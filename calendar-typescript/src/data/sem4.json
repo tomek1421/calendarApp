@@ -1,0 +1,42 @@
+[
+    {
+        "month": "January",
+        "firstDay": "Monday",
+        "days": 31
+    },
+    {
+        "month": "Febuary",
+        "firstDay": "Thursday",
+        "days": 29
+    },
+    {
+        "month": "March",
+        "firstDay": "Friday",
+        "days": 31
+    },
+    {
+        "month": "April",
+        "firstDay": "Monday",
+        "days": 30
+    },
+    {
+        "month": "May",
+        "firstDay": "Wednesday",
+        "days": 31
+    },
+    {
+        "month": "June",
+        "firstDay": "Friday",
+        "days": 30
+    },
+    {
+        "month": "September",
+        "firstDay": "Thursday",
+        "days": 29
+    },
+    {
+        "month": "October",
+        "firstDay": "Sunday",
+        "days": 30
+    }
+]
