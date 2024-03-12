@@ -1,6 +1,6 @@
 import React from 'react'
 import data from "../data/sem4.json"
-import { DayTail } from './DayTail'
+import { DayTail } from './DaySquare'
 
 interface Data {
   month: string,
