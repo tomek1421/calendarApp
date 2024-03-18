@@ -4,7 +4,7 @@ import { Calendar } from './Calendar'
 export const Home: React.FC = () => {
   
   return (
-    <div className="flex justify-center">
+    <div>
         <Calendar/>
     </div>
   )

@@ -1,10 +1,10 @@
 import React from 'react'
 
-export const DayTail = (props: {day: number, opacity: boolean, tests: string[], homework: string[]}) => {
+export const DaySquare = (props: {day: number, opacity: boolean, tests: string[], homework: string[]}) => {
   const styles = props.opacity ? { opacity: 0.3 } : {}
 
   return (
-    <div className="day-tail" style={styles}>
+    <div className="day-square" style={styles}>
       <div>{props.day + 1}</div>
       <div className="flex gap-[2px] mb-[2px]">
         {
