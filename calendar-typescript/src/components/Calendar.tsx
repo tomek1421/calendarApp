@@ -1,6 +1,7 @@
 import React from 'react'
 import data from "../data/sem4.json"
-import { DayTail } from './DaySquare'
+import { DaySquare } from './DaySquare'
+import { ChevronLeft, ChevronRight, Circle, CircleDot } from "lucide-react"
 
 interface Data {
   month: string,
@@ -38,10 +39,10 @@ export const Calendar: React.FC = () => {
     }
 
     return (
-        <div className="grid mt-[2rem]">
-            {showPrev && <div className="btn1 flex justify-center items-center zoom" onClick={() => showPrevMonth()}><i className="fa fa-chevron-left text-[2rem]"></i></div>}
-            <div style={{border: "1px solid"}} className="calendar" >
-                <div>{calendarData[monthIndex].month}</div>
+        <div className="grid">
+            {showPrev && <div className="btn1 flex justify-center items-center zoom" onClick={() => showPrevMonth()}><ChevronLeft size={48} strokeWidth={2} /></div>}
+            <div className="calendar" >
+                <div className="text-[2rem] font-[500] mt-[0.7rem] mb-[0.7rem]">{calendarData[monthIndex].month}</div>
                 <div className="calendar-head">
                     {
                         daysOfWeek.map(day => {
@@ -54,27 +55,38 @@ export const Calendar: React.FC = () => {
                     {
                         Array.from(Array(calendarData[monthIndex - 1].days).keys()).slice(offset > 0 ? -offset : 999).map((day, index) => {
                             return (
-                                <DayTail day={day} opacity={true} tests={["Go"]} homework={["Ang", "Mat"]} />
+                                <DaySquare day={day} opacity={true} tests={["Go"]} homework={["Ang", "Mat"]} />
                             )
                         })
                     }
                     {
                         Array.from(Array(calendarData[monthIndex].days).keys()).map((day, index) => {
                             return (
-                                <DayTail day={day} opacity={false} tests={["Go", "Py"]} homework={["Ang", "Mat", "Ang", "Mat"]}/>
+                                <DaySquare day={day} opacity={false} tests={["Go", "Py"]} homework={["Ang", "Mat", "Ang", "Mat"]}/>
                             )
                         })
                     }
                     {
                         Array.from(Array(calendarData[monthIndex + 1].days).keys()).slice(0, 7 * 5 - calendarData[monthIndex].days - offset).map((day, index) => {
                             return (
-                                <DayTail day={day} opacity={true} tests={["Go", "Py"]} homework={["Ang"]}/>
+                                <DaySquare day={day} opacity={true} tests={["Go", "Py"]} homework={["Ang"]}/>
                             )
                         })
                     }
                 </div>
             </div>
-            {showNext && <div className="btn2 flex justify-center items-center zoom" onClick={() => showNextMonth()}><i className="fa fa-chevron-right text-[2rem]"></i></div>}
+            {showNext && <div className="btn2 flex justify-center items-center zoom" onClick={() => showNextMonth()}><ChevronRight size={48} strokeWidth={2} /></div>}
+            <div className="dots-box">
+                <div className="dots">
+                    {
+                        calendarData.map((_, index) => (
+                            index > 0 && index < calendarData.length-1 ? index === monthIndex ? 
+                            <div className="dot-curr" ><Circle size={16} strokeWidth={1.5}/></div> : 
+                            <div className="dot" ><Circle size={16} strokeWidth={1.5}/></div> : null
+                        ))
+                    }
+                </div>
+            </div>
         </div>
     )
 }
