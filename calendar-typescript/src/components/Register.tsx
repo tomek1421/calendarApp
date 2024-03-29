@@ -1,9 +1,11 @@
 import React from 'react'
 import { useFormik } from 'formik';
 import { register } from '../api/authorization';
+import { useAuth } from './Context';
 
 export const Register: React.FC = () => {
-
+    const context = useAuth();
+    
     const [firstfaculty, setFirstfaculty] = React.useState<number>(0)
     const [secondfaculty, setSecondfaculty] = React.useState<number>(0)
 
@@ -16,11 +18,12 @@ export const Register: React.FC = () => {
             faculty3: ""
         },
         onSubmit: (values) => {
-            console.log(values)
+            // console.log(values)
             register({...values, faculty1: parseInt(values.faculty1), faculty2: parseInt(values.faculty2), faculty3: parseInt(values.faculty3)})
             .then(msg => {
-                console.log(msg.data)
+                console.log(msg.status)
                 localStorage.setItem("token", msg.data.token)
+                context.login()
             })
             .catch(err => console.log(err.response.data))
         }

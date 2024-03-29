@@ -1,8 +1,12 @@
 import React from 'react'
 import { useFormik } from 'formik';
 import { login } from '../api/authorization';
+import { useAuth } from './Context';
 
 export const Login: React.FC = () => {
+
+    const context = useAuth()
+
     const formik = useFormik({
         initialValues: {
             username: "",
@@ -12,8 +16,9 @@ export const Login: React.FC = () => {
             console.log(values)
             login(values)
             .then(msg => {
-                console.log(msg.data)
+                console.log(msg.status)
                 localStorage.setItem("token", msg.data.token)
+                context.login()
             })
             .catch(err => console.log(err.response.data))
         }
