@@ -5,6 +5,7 @@ interface AuthContextType {
   isAuthenticated: {auth: boolean, role: string, username: string};
   login: () => void;
   logout: () => void;
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<{ auth: boolean; role: string; username: string; }>>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -20,11 +21,24 @@ interface Token {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState({auth: false, role: "", username: ""});
-  const token: any = localStorage.getItem("token")
-  const decodedToken: Token = jwtDecode(token)
+
+  // !!! dodac useEffecta refactor contextu!!!
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem("token")
+
+      if (token) {
+        const decoded: Token = jwtDecode(token)
+        setIsAuthenticated({auth: true, role: decoded.role, username: decoded.unique_name})
+      }
+    }
+  }, [])
 
   const login = () => {
     // Perform login logic
+    const token: any = localStorage.getItem("token")
+    const decodedToken: Token = jwtDecode(token)
     setIsAuthenticated({auth: true, role: decodedToken.role, username: decodedToken.unique_name});
   };
 
@@ -34,7 +48,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

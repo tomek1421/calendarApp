@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import './App.css';
-import { Home } from './components/Home';
-import { Error } from './components/Error';
-import { Register } from './components/Register';
-import { Login } from './components/Login';
+import { Home } from './pages/Home';
+import { Error } from './pages/Error';
+import { Register } from './pages/Register';
+import { Login } from './pages/Login';
 import { SharedLayout } from './components/SharedLayout';
 import { AuthProvider } from './components/Context';
 
