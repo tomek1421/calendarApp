@@ -7,6 +7,7 @@ import { Register } from './pages/Register';
 import { Login } from './pages/Login';
 import { SharedLayout } from './components/SharedLayout';
 import { AuthProvider } from './components/Context';
+import { Day } from './pages/Day';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
             <Route index element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/calendar-day/:dayId/:dayOfWeekId/:monthId" element={<Day />} />
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>

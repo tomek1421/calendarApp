@@ -55,21 +55,21 @@ export const Calendar: React.FC = () => {
                     {
                         Array.from(Array(calendarData[monthIndex - 1].days).keys()).slice(offset > 0 ? -offset : 999).map((day, index) => {
                             return (
-                                <DaySquare day={day} opacity={true} tests={["Go"]} homework={["Ang", "Mat"]} />
+                                <DaySquare day={day} dayOfWeek={daysOfWeek[(day) % 7]} month={calendarData[monthIndex - 1].month} opacity={true} tests={["Go"]} homework={["Ang", "Mat"]} />
                             )
                         })
                     }
                     {
                         Array.from(Array(calendarData[monthIndex].days).keys()).map((day, index) => {
                             return (
-                                <DaySquare day={day} opacity={false} tests={["Go", "Py"]} homework={["Ang", "Mat", "Ang", "Mat"]}/>
+                                <DaySquare day={day} dayOfWeek={daysOfWeek[(offset + day) % 7]} month={calendarData[monthIndex].month} opacity={false} tests={["Go", "Py"]} homework={["Ang", "Mat", "Ang", "Mat"]}/>
                             )
                         })
                     }
                     {
                         Array.from(Array(calendarData[monthIndex + 1].days).keys()).slice(0, 7 * 5 - calendarData[monthIndex].days - offset).map((day, index) => {
                             return (
-                                <DaySquare day={day} opacity={true} tests={["Go", "Py"]} homework={["Ang"]}/>
+                                <DaySquare day={day} dayOfWeek={daysOfWeek[(offset + calendarData[monthIndex].days + day) % 7]} month={calendarData[monthIndex + 1].month} opacity={true} tests={["Go", "Py"]} homework={["Ang"]}/>
                             )
                         })
                     }

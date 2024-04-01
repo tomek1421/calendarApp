@@ -1,10 +1,16 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export const DaySquare = (props: {day: number, opacity: boolean, tests: string[], homework: string[]}) => {
+export const DaySquare = (props: {day: number, dayOfWeek: string, month: string, opacity: boolean, tests: string[], homework: string[]}) => {
   const styles = props.opacity ? { opacity: 0.3 } : {}
+  const navigate = useNavigate()
+
+  function handleClick() {
+    navigate(`/calendar-day/${props.day + 1}/${props.dayOfWeek}/${props.month}`)
+  }
 
   return (
-    <div className="day-square" style={styles}>
+    <div className="day-square" style={styles} onClick={() => handleClick()} >
       <div>{props.day + 1}</div>
       <div className="flex gap-[2px] mb-[2px]">
         {
