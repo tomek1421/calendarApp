@@ -22,7 +22,7 @@ export const Navbar: React.FC = () => {
                 <NavLink to="/register">Sign-up</NavLink>
                 { !context.isAuthenticated.auth ? <NavLink to="/login">Login</NavLink> : <button onClick={handleLogout} >Logout</button> }
             </div>
-            <div>{context.isAuthenticated.username}</div>
+            { context.isAuthenticated.username == "Admin" ? <button onClick={() => navigate('/admin')}>{context.isAuthenticated.username}</button> : <div>{context.isAuthenticated.username}</div>}
         </div>
     )
 }
